@@ -15,6 +15,8 @@ DefinitionBlock ("", "SSDT", 2, "ACDT", "BATT", 0x00003000)
     External (_SB.PCI0.LPC.EC.B1I3, UnknownObj)
     External (_SB.PCI0.LPC.EC.HIID, FieldUnitObj)
     External (_SB.PCI0.LPC.EC.AC._PSR, MethodObj)
+    External (_SB.PCI0.LPC.EC.XBIF, MethodObj)
+    External (_SB.PCI0.LPC.EC.XBST, MethodObj)
     
     Scope (_SB.PCI0.LPC.EC)
     {
@@ -280,216 +282,230 @@ DefinitionBlock ("", "SSDT", 2, "ACDT", "BATT", 0x00003000)
 
         Method (GBIF, 3, NotSerialized)
         {
-            Acquire (BATM, 0xFFFF)
-            If (Arg2)
+            If (_OSI ("Darwin"))
             {
-                Or (Arg0, 0x01, HIID)
-                Store (B1B2 (YBBM, ZBBM), Local7)
-                ShiftRight (Local7, 0x0F, Local7)
-                XOr (Local7, 0x01, Index (Arg1, 0x00))
-                Store (Arg0, HIID)
-                If (Local7)
+                Acquire (BATM, 0xFFFF)
+                If (Arg2)
                 {
-                    Multiply (B1B2 (YBFC, ZBFC), 0x0A, Local1)
-                }
-                Else
-                {
-                    Store (B1B2 (YBFC, ZBFC), Local1)
-                }
+                    Or (Arg0, 0x01, HIID)
+                    Store (B1B2 (YBBM, ZBBM), Local7)
+                    ShiftRight (Local7, 0x0F, Local7)
+                    XOr (Local7, 0x01, Index (Arg1, 0x00))
+                    Store (Arg0, HIID)
+                    If (Local7)
+                    {
+                        Multiply (B1B2 (YBFC, ZBFC), 0x0A, Local1)
+                    }
+                    Else
+                    {
+                        Store (B1B2 (YBFC, ZBFC), Local1)
+                    }
 
-                Store (Local1, Index (Arg1, 0x02))
-                Or (Arg0, 0x02, HIID)
-                If (Local7)
-                {
-                    Multiply (B1B2 (YBDC, ZBDC), 0x0A, Local0)
-                }
-                Else
-                {
-                    Store (B1B2 (YBDC, ZBDC), Local0)
-                }
+                    Store (Local1, Index (Arg1, 0x02))
+                    Or (Arg0, 0x02, HIID)
+                    If (Local7)
+                    {
+                        Multiply (B1B2 (YBDC, ZBDC), 0x0A, Local0)
+                    }
+                    Else
+                    {
+                        Store (B1B2 (YBDC, ZBDC), Local0)
+                    }
 
-                Store (Local0, Index (Arg1, 0x01))
-                Divide (Local1, 0x14, Local2, Index (Arg1, 0x05))
-                If (Local7)
-                {
-                    Store (0xC8, Index (Arg1, 0x06))
-                }
-                ElseIf (B1B2 (YBDV, ZBDV))
-                {
-                    Divide (0x00030D40, B1B2 (YBDV, ZBDV), Local2, Index (Arg1, 0x06))
+                    Store (Local0, Index (Arg1, 0x01))
+                    Divide (Local1, 0x14, Local2, Index (Arg1, 0x05))
+                    If (Local7)
+                    {
+                        Store (0xC8, Index (Arg1, 0x06))
+                    }
+                    ElseIf (B1B2 (YBDV, ZBDV))
+                    {
+                        Divide (0x00030D40, B1B2 (YBDV, ZBDV), Local2, Index (Arg1, 0x06))
+                    }
+                    Else
+                    {
+                        Store (0x00, Index (Arg1, 0x06))
+                    }
+
+                    Store (B1B2 (YBDV, ZBDV), Index (Arg1, 0x04))
+                    Store (B1B2 (YBSN, ZBSN), Local0)
+                    Name (SERN, Buffer (0x06)
+                    {
+                        "     "
+                    })
+                    Store (0x04, Local2)
+                    While (Local0)
+                    {
+                        Divide (Local0, 0x0A, Local1, Local0)
+                        Add (Local1, 0x30, Index (SERN, Local2))
+                        Decrement (Local2)
+                    }
+
+                    Store (SERN, Index (Arg1, 0x0A))
+                    Or (Arg0, 0x06, HIID)
+                    Store (B1B2 (YBSN, ZBSN), Index (Arg1, 0x09))
+                    Or (Arg0, 0x04, HIID)
+                    Name (BTYP, Buffer (0x05)
+                    {
+                         0x00, 0x00, 0x00, 0x00, 0x00                   
+                    })
+                    Store (B1B4 (WBCH, XBCH, YBCH, ZBCH), BTYP)
+                    Store (BTYP, Index (Arg1, 0x0B))
+                    Or (Arg0, 0x05, HIID)
+                    Store (B1B4 (B1B4 (BM00, BM01, BM02, BM03), B1B4 (BM04, BM05, BM06, BM07), B1B4 (BM08, BM09, BM10, BM11), B1B4 (BM12, BM13, BM14, BM15)), Index (Arg1, 0x0C))
                 }
                 Else
                 {
+                    Store (0xFFFFFFFF, Index (Arg1, 0x01))
+                    Store (0x00, Index (Arg1, 0x05))
                     Store (0x00, Index (Arg1, 0x06))
+                    Store (0xFFFFFFFF, Index (Arg1, 0x02))
                 }
 
-                Store (B1B2 (YBDV, ZBDV), Index (Arg1, 0x04))
-                Store (B1B2 (YBSN, ZBSN), Local0)
-                Name (SERN, Buffer (0x06)
-                {
-                    "     "
-                })
-                Store (0x04, Local2)
-                While (Local0)
-                {
-                    Divide (Local0, 0x0A, Local1, Local0)
-                    Add (Local1, 0x30, Index (SERN, Local2))
-                    Decrement (Local2)
-                }
-
-                Store (SERN, Index (Arg1, 0x0A))
-                Or (Arg0, 0x06, HIID)
-                Store (B1B2 (YBSN, ZBSN), Index (Arg1, 0x09))
-                Or (Arg0, 0x04, HIID)
-                Name (BTYP, Buffer (0x05)
-                {
-                     0x00, 0x00, 0x00, 0x00, 0x00                   
-                })
-                Store (B1B4 (WBCH, XBCH, YBCH, ZBCH), BTYP)
-                Store (BTYP, Index (Arg1, 0x0B))
-                Or (Arg0, 0x05, HIID)
-                Store (B1B4 (B1B4 (BM00, BM01, BM02, BM03), B1B4 (BM04, BM05, BM06, BM07), B1B4 (BM08, BM09, BM10, BM11), B1B4 (BM12, BM13, BM14, BM15)), Index (Arg1, 0x0C))
+                Release (BATM)
+                Return (Arg1)
             }
             Else
             {
-                Store (0xFFFFFFFF, Index (Arg1, 0x01))
-                Store (0x00, Index (Arg1, 0x05))
-                Store (0x00, Index (Arg1, 0x06))
-                Store (0xFFFFFFFF, Index (Arg1, 0x02))
+                Return (XBIF (Arg0, Arg1, Arg2))
             }
-
-            Release (BATM)
-            Return (Arg1)
         }
 
         Method (GBST, 4, NotSerialized)
         {
-            Acquire (BATM, 0xFFFF)
-            If (And (Arg1, 0x20))
+            If (_OSI ("Darwin"))
             {
-                Store (0x02, Local0)
-            }
-            ElseIf (And (Arg1, 0x40))
-            {
-                Store (0x01, Local0)
-            }
-            Else
-            {
-                Store (0x00, Local0)
-            }
-
-            If (And (Arg1, 0x07)){}
-            Else
-            {
-                Or (Local0, 0x04, Local0)
-            }
-
-            If (LEqual (And (Arg1, 0x07), 0x07))
-            {
-                Store (0x04, Local0)
-                Store (0x00, Local1)
-                Store (0x00, Local2)
-                Store (0x00, Local3)
-            }
-            Else
-            {
-                Store (Arg0, HIID)
-                Store (B1B2 (YBVO, ZBVO), Local3)
-                If (Arg2)
+                Acquire (BATM, 0xFFFF)
+                If (And (Arg1, 0x20))
                 {
-                    Multiply (B1B2 (YBRC, ZBRC), 0x0A, Local2)
+                    Store (0x02, Local0)
+                }
+                ElseIf (And (Arg1, 0x40))
+                {
+                    Store (0x01, Local0)
                 }
                 Else
                 {
-                    Store (B1B2 (YBRC, ZBRC), Local2)
+                    Store (0x00, Local0)
                 }
 
-                Store (B1B2 (YBAC, ZBAC), Local1)
-                If (LGreaterEqual (Local1, 0x8000))
+                If (And (Arg1, 0x07)){}
+                Else
                 {
-                    If (And (Local0, 0x01))
+                    Or (Local0, 0x04, Local0)
+                }
+
+                If (LEqual (And (Arg1, 0x07), 0x07))
+                {
+                    Store (0x04, Local0)
+                    Store (0x00, Local1)
+                    Store (0x00, Local2)
+                    Store (0x00, Local3)
+                }
+                Else
+                {
+                    Store (Arg0, HIID)
+                    Store (B1B2 (YBVO, ZBVO), Local3)
+                    If (Arg2)
                     {
-                        Subtract (0x00010000, Local1, Local1)
+                        Multiply (B1B2 (YBRC, ZBRC), 0x0A, Local2)
                     }
                     Else
+                    {
+                        Store (B1B2 (YBRC, ZBRC), Local2)
+                    }
+
+                    Store (B1B2 (YBAC, ZBAC), Local1)
+                    If (LGreaterEqual (Local1, 0x8000))
+                    {
+                        If (And (Local0, 0x01))
+                        {
+                            Subtract (0x00010000, Local1, Local1)
+                        }
+                        Else
+                        {
+                            Store (0x00, Local1)
+                        }
+                    }
+                    ElseIf (LNot (And (Local0, 0x02)))
                     {
                         Store (0x00, Local1)
                     }
-                }
-                ElseIf (LNot (And (Local0, 0x02)))
-                {
-                    Store (0x00, Local1)
+
+                    If (Arg2)
+                    {
+                        Multiply (Local3, Local1, Local1)
+                        Divide (Local1, 0x03E8, Local7, Local1)
+                    }
                 }
 
-                If (Arg2)
+                Store (ShiftLeft (0x01, ShiftRight (Arg0, 0x04)), Local5)
+                Or (BSWA, BSWR, BSWA)
+                If (LEqual (And (\_SB.PCI0.LPC.EC.BSWA, Local5), 0x00))
                 {
-                    Multiply (Local3, Local1, Local1)
-                    Divide (Local1, 0x03E8, Local7, Local1)
-                }
-            }
-
-            Store (ShiftLeft (0x01, ShiftRight (Arg0, 0x04)), Local5)
-            Or (BSWA, BSWR, BSWA)
-            If (LEqual (And (\_SB.PCI0.LPC.EC.BSWA, Local5), 0x00))
-            {
-                Store (Local0, Index (Arg3, 0x00))
-                Store (Local1, Index (Arg3, 0x01))
-                Store (Local2, Index (Arg3, 0x02))
-                Store (Local3, Index (Arg3, 0x03))
-                If (LEqual (Arg0, 0x00))
-                {
-                    Store (Local0, B0I0)
-                    Store (Local1, B0I1)
-                    Store (Local2, B0I2)
-                    Store (Local3, B0I3)
-                }
-                Else
-                {
-                    Store (Local0, B1I0)
-                    Store (Local1, B1I1)
-                    Store (Local2, B1I2)
-                    Store (Local3, B1I3)
-                }
-            }
-            Else
-            {
-                If (\_SB.PCI0.LPC.EC.AC._PSR ())
-                {
+                    Store (Local0, Index (Arg3, 0x00))
+                    Store (Local1, Index (Arg3, 0x01))
+                    Store (Local2, Index (Arg3, 0x02))
+                    Store (Local3, Index (Arg3, 0x03))
                     If (LEqual (Arg0, 0x00))
                     {
-                        Store (B0I0, Index (Arg3, 0x00))
-                        Store (B0I1, Index (Arg3, 0x01))
-                        Store (B0I2, Index (Arg3, 0x02))
-                        Store (B0I3, Index (Arg3, 0x03))
+                        Store (Local0, B0I0)
+                        Store (Local1, B0I1)
+                        Store (Local2, B0I2)
+                        Store (Local3, B0I3)
                     }
                     Else
                     {
-                        Store (B1I0, Index (Arg3, 0x00))
-                        Store (B1I1, Index (Arg3, 0x01))
-                        Store (B1I2, Index (Arg3, 0x02))
-                        Store (B1I3, Index (Arg3, 0x03))
+                        Store (Local0, B1I0)
+                        Store (Local1, B1I1)
+                        Store (Local2, B1I2)
+                        Store (Local3, B1I3)
                     }
                 }
                 Else
                 {
-                    Store (Local0, Index (Arg3, 0x00))
-                    Store (Local1, Index (Arg3, 0x01))
-                    Store (Local2, Index (Arg3, 0x02))
-                    Store (Local3, Index (Arg3, 0x03))
+                    If (\_SB.PCI0.LPC.EC.AC._PSR ())
+                    {
+                        If (LEqual (Arg0, 0x00))
+                        {
+                            Store (B0I0, Index (Arg3, 0x00))
+                            Store (B0I1, Index (Arg3, 0x01))
+                            Store (B0I2, Index (Arg3, 0x02))
+                            Store (B0I3, Index (Arg3, 0x03))
+                        }
+                        Else
+                        {
+                            Store (B1I0, Index (Arg3, 0x00))
+                            Store (B1I1, Index (Arg3, 0x01))
+                            Store (B1I2, Index (Arg3, 0x02))
+                            Store (B1I3, Index (Arg3, 0x03))
+                        }
+                    }
+                    Else
+                    {
+                        Store (Local0, Index (Arg3, 0x00))
+                        Store (Local1, Index (Arg3, 0x01))
+                        Store (Local2, Index (Arg3, 0x02))
+                        Store (Local3, Index (Arg3, 0x03))
+                    }
+
+                    If (LAnd (LEqual (And (Local0, 0x04), 0x00), LAnd (LGreater (Local2, 0x00), LGreater (Local3, 0x00))))
+                    {
+                        And (BSWA, Not (Local5), BSWA)
+                        Store (Local0, Index (Arg3, 0x00))
+                        Store (Local1, Index (Arg3, 0x01))
+                        Store (Local2, Index (Arg3, 0x02))
+                        Store (Local3, Index (Arg3, 0x03))
+                    }
                 }
 
-                If (LAnd (LEqual (And (Local0, 0x04), 0x00), LAnd (LGreater (Local2, 0x00), LGreater (Local3, 0x00))))
-                {
-                    And (BSWA, Not (Local5), BSWA)
-                    Store (Local0, Index (Arg3, 0x00))
-                    Store (Local1, Index (Arg3, 0x01))
-                    Store (Local2, Index (Arg3, 0x02))
-                    Store (Local3, Index (Arg3, 0x03))
-                }
+                Release (BATM)
+                Return (Arg3)
             }
-
-            Release (BATM)
-            Return (Arg3)
+            Else
+            {
+                Return (XBST (Arg0, Arg1, Arg2, Arg3))
+            }
         }
     }
 

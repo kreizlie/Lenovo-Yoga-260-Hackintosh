@@ -5,14 +5,17 @@ DefinitionBlock ("", "SSDT", 2, "ACDT", "_HPE0", 0)
     External (_SB.PCI0.LPC.HPET, DeviceObj)
     External (WNTF, IntObj)
     External (WXPF, IntObj)
-    
+
     // Disable HPET
     Scope (_SB.PCI0.LPC.HPET)
     {
         Method (_INI, 0, Serialized)
         {
-            WNTF = One
-            WXPF = Zero
+            If (_OSI ("Darwin"))
+            {
+                WNTF = One
+                WXPF = Zero
+            }
         }
     }
 
@@ -35,7 +38,14 @@ DefinitionBlock ("", "SSDT", 2, "ACDT", "_HPE0", 0)
             
             Method (_STA, 0, NotSerialized)
             {
-                Return (0x0F)
+                If (_OSI ("Darwin"))
+                {
+                    Return (0x0F)
+                }
+                Else
+                {
+                    Return (Zero)
+                }
             }
             
             Method (_CRS, 0, Serialized)

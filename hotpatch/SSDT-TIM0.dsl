@@ -9,7 +9,14 @@ DefinitionBlock ("", "SSDT", 2, "ACDT", "_TIM0", 0)
     {
         Method (_STA, 0, NotSerialized)
         {
-            Return (Zero)
+            If (_OSI ("Darwin"))
+            {
+                Return (Zero)
+            }
+            Else
+            {
+                Return (0x0F)
+            }
         }
     }
     
@@ -37,7 +44,14 @@ DefinitionBlock ("", "SSDT", 2, "ACDT", "_TIM0", 0)
             
             Method (_STA, 0, NotSerialized)
             {
-                Return (0x0F)
+                If (_OSI ("Darwin"))
+                {
+                    Return (0x0F)
+                }
+                Else
+                {
+                    Return (Zero)
+                }
             }
         }
     }

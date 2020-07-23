@@ -7,7 +7,14 @@ DefinitionBlock("", "SSDT", 2, "ACDT", "SLPB", 0)
     {
         Method (_STA, 0, NotSerialized)
         {
-            Return (0x0B)
+            If (_OSI ("Darwin"))
+            {
+                Return (0x0B)
+            }
+            Else
+            {
+                Return (0x0F)
+            }
         }
     }
 }

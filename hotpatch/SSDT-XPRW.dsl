@@ -8,16 +8,29 @@ DefinitionBlock("", "SSDT", 2, "ACDT", "XPRW", 0)
     External (_SB.PCI0.RP09, DeviceObj)
     External (_SB.PCI0.XHCI, DeviceObj)
     External (_SB.PCI0.LPC.EC.PUBS, UnknownObj)
+    External (_SB.LID.XPRW, MethodObj)
+    External (_SB.SLPB.XPRW, MethodObj)
+    External (_SB.PCI0.IGBE.XPRW, MethodObj)
+    External (_SB.PCI0.EXP2.XPRW, MethodObj)
+    External (_SB.PCI0.RP09.XPRW, MethodObj)
+    External (_SB.PCI0.XHCI.XPRW, MethodObj)
     
     Scope (_SB.LID)
     {
         Method (_PRW, 0, NotSerialized)  // _PRW: Power Resources for Wake
         {
-            Return (Package ()
+            If (_OSI ("Darwin"))
             {
-                0x17, 
-                0x00
-            })
+                Return (Package ()
+                {
+                    0x17, 
+                    0x00
+                })
+            }
+            Else
+            {
+                Return (\_SB.LID.XPRW ())
+            }
         }
     }
 
@@ -25,11 +38,18 @@ DefinitionBlock("", "SSDT", 2, "ACDT", "XPRW", 0)
     {
         Method (_PRW, 0, NotSerialized)  // _PRW: Power Resources for Wake
         {
-            Return (Package ()
+            If (_OSI ("Darwin"))
             {
-                0x17, 
-                0x00
-            })
+                Return (Package ()
+                {
+                    0x17, 
+                    0x00
+                })
+            }
+            Else
+            {
+                Return (\_SB.SLPB.XPRW ())
+            }
         }
     }
 
@@ -37,11 +57,18 @@ DefinitionBlock("", "SSDT", 2, "ACDT", "XPRW", 0)
     {
         Method (_PRW, 0, NotSerialized)  // _PRW: Power Resources for Wake
         {
-            Return (Package ()
+            If (_OSI ("Darwin"))
             {
-                0x6D,
-                0x00
-            })
+                Return (Package ()
+                {
+                    0x6D,
+                    0x00
+                })
+            }
+            Else
+            {
+                Return (\_SB.PCI0.IGBE.XPRW ())
+            }
         }
     }
 
@@ -49,11 +76,19 @@ DefinitionBlock("", "SSDT", 2, "ACDT", "XPRW", 0)
     {
         Method (_PRW, 0, NotSerialized)  // _PRW: Power Resources for Wake
         {
-            Return (Package ()
+            If (_OSI ("Darwin"))
             {
-                0x69, 
-                0x00
-            })
+                Return (Package ()
+                {
+                    0x69, 
+                    0x00
+                })
+            }
+            Else
+            {
+                Return (\_SB.PCI0.EXP2.XPRW ())
+            }
+
         }
     }
 
@@ -61,11 +96,18 @@ DefinitionBlock("", "SSDT", 2, "ACDT", "XPRW", 0)
     {
         Method (_PRW, 0, NotSerialized)  // _PRW: Power Resources for Wake
         {
-            Return (Package ()
+            If (_OSI ("Darwin"))
             {
-                0x69, 
-                0x00
-            })
+                Return (Package ()
+                {
+                    0x69, 
+                    0x00
+                })
+            }
+            Else
+            {
+                Return (\_SB.PCI0.RP09.XPRW ())
+            }
         }
     }
 
@@ -73,12 +115,20 @@ DefinitionBlock("", "SSDT", 2, "ACDT", "XPRW", 0)
     {
         Method (_PRW, 0, NotSerialized)  // _PRW: Power Resources for Wake
         {
-            Return (Package ()
+            If (_OSI ("Darwin"))
             {
-                0x6D, 
-                0x00,
-                \_SB.PCI0.LPC.EC.PUBS
-            })
+                Return (Package ()
+                {
+                    0x6D, 
+                    0x00,
+                    \_SB.PCI0.LPC.EC.PUBS
+                })
+            }
+            Else
+            {
+                Return (\_SB.PCI0.XHCI.XPRW ())
+            }
+            
         }
     }
 }
