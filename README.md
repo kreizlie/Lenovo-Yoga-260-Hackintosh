@@ -2,9 +2,8 @@
 Hackintosh machine using OpenCore bootloader on Lenovo Yoga 260, with multi-gesture trackpad (SMBus) and touchscreen (I2C)
 
 #### Introduction
-This laptop is an excellent Hackintosh laptop I've ever built.
-Both trackpad and touchscreen are working.
-I made custom VoodooSMBus.kext to avoid conflicts with VoodooI2C.kext
+This laptop is an excellent Hackintosh machine, although it's more difficult to build as it's ACPI naming is uncommon and there are not so many guides available to help. 
+Both trackpad and touchscreen are working well together using custom VoodooSMBus.kext to avoid conflicts with VoodooI2C.kext
 
 #### Laptop Specifications:
 - Intel Core i5-6200U 2.3GHz CPU
