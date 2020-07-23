@@ -53,3 +53,11 @@ Trackpad, touchscreen, and trackpoint are working well together, I made a custom
 - Multi-gesture Trackpad
 - Multi-gesture Touchscreen
 - Trackpoint
+
+#### SSDT and Patches:
+- Rewrite EC method GBIF and GBST to enable battery status
+- Rewrite WAK method to fix Breathing LED issue after wake from sleep
+- Rewrite all PRW methods to return Zero on the second argument
+- Rewrite some EC queries to enable brightness control on keyboard
+- Add Fake HPE0, Fake RTC0, and Fake TIM0
+- Add other complementary SSDTs
