@@ -36,7 +36,7 @@ Trackpad, touchscreen, and trackpoint are working well together, I made a custom
 - Enable Quick Boot Mode
 
 #### What works:
-- Intel GPU Acceleration
+- Intel HD Graphics QE/CI
 - External HDMI Monitor
 - HiDPI Scaled Resolution (1440 x 810)
 - USB 3.0 Ports
