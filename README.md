@@ -9,15 +9,14 @@ Trackpad, touchscreen, and trackpoint are working well together, I made a custom
 - Intel Core i5-6200U 2.3GHz CPU
 - Intel HD 520 Graphics
 - 8GB DDR4 2133MHz RAM
-- 250GB Crucial MX500 M.2 SSD (upgraded)
+- SAMSUNG EVO M.2 SSD (upgraded)
 - 12.5in Full HD IPS Display
-- WACOM I2C Touchscreen
 - ELAN SMBus TouchPad
 - Trackpoint
 - BCM94360CS2 Wi-Fi and Bluetooth Card (upgraded)
 
 #### BIOS Setup:
-- Update to BIOS 2020/06/12 EC 1.27
+- BIOS 1.82
 - Disable Wake on LAN
 - Enable USB UEFI Support
 - Disable Always-On USB
@@ -53,11 +52,3 @@ Trackpad, touchscreen, and trackpoint are working well together, I made a custom
 - Multi-gesture Trackpad
 - Multi-gesture Touchscreen
 - Trackpoint
-
-#### SSDT and Patches:
-- Rewrite EC method GBIF and GBST to enable battery status
-- Rewrite WAK method to fix Breathing LED issue after wake from sleep
-- Rewrite all PRW methods to return Zero on the second argument
-- Rewrite some EC queries to enable brightness control on keyboard
-- Add Fake HPE0, Fake RTC0, and Fake TIM0
-- Add other complementary SSDTs
