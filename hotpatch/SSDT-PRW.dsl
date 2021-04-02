@@ -1,30 +1,30 @@
-// SSDT Fix PRW
-DefinitionBlock("", "SSDT", 2, "ACDT", "XPRW", 0)
+// SSDT-PRW
+DefinitionBlock ("", "SSDT", 2, "ACDT", "PRW", 0x00000000)
 {
     External (_SB.LID, DeviceObj)
-    External (_SB.SLPB, DeviceObj)
-    External (_SB.PCI0.IGBE, DeviceObj)
-    External (_SB.PCI0.EXP2, DeviceObj)
-    External (_SB.PCI0.RP09, DeviceObj)
-    External (_SB.PCI0.XHCI, DeviceObj)
-    External (_SB.PCI0.LPC.EC.PUBS, UnknownObj)
     External (_SB.LID.XPRW, MethodObj)
-    External (_SB.SLPB.XPRW, MethodObj)
-    External (_SB.PCI0.IGBE.XPRW, MethodObj)
+    External (_SB.PCI0.EXP2, DeviceObj)
     External (_SB.PCI0.EXP2.XPRW, MethodObj)
+    External (_SB.PCI0.IGBE, DeviceObj)
+    External (_SB.PCI0.IGBE.XPRW, MethodObj)
+    External (_SB.PCI0.LPC.EC.PUBS, UnknownObj)
+    External (_SB.PCI0.RP09, DeviceObj)
     External (_SB.PCI0.RP09.XPRW, MethodObj)
+    External (_SB.PCI0.XHCI, DeviceObj)
     External (_SB.PCI0.XHCI.XPRW, MethodObj)
-    
+    External (_SB.SLPB, DeviceObj)
+    External (_SB.SLPB.XPRW, MethodObj)
+
     Scope (_SB.LID)
     {
         Method (_PRW, 0, NotSerialized)  // _PRW: Power Resources for Wake
         {
             If (_OSI ("Darwin"))
             {
-                Return (Package ()
+                Return (Package (0x02)
                 {
                     0x17, 
-                    0x00
+                    Zero
                 })
             }
             Else
@@ -40,10 +40,10 @@ DefinitionBlock("", "SSDT", 2, "ACDT", "XPRW", 0)
         {
             If (_OSI ("Darwin"))
             {
-                Return (Package ()
+                Return (Package (0x02)
                 {
                     0x17, 
-                    0x00
+                    Zero
                 })
             }
             Else
@@ -59,10 +59,10 @@ DefinitionBlock("", "SSDT", 2, "ACDT", "XPRW", 0)
         {
             If (_OSI ("Darwin"))
             {
-                Return (Package ()
+                Return (Package (0x02)
                 {
-                    0x6D,
-                    0x00
+                    0x6D, 
+                    Zero
                 })
             }
             Else
@@ -78,17 +78,16 @@ DefinitionBlock("", "SSDT", 2, "ACDT", "XPRW", 0)
         {
             If (_OSI ("Darwin"))
             {
-                Return (Package ()
+                Return (Package (0x02)
                 {
                     0x69, 
-                    0x00
+                    Zero
                 })
             }
             Else
             {
                 Return (\_SB.PCI0.EXP2.XPRW ())
             }
-
         }
     }
 
@@ -98,10 +97,10 @@ DefinitionBlock("", "SSDT", 2, "ACDT", "XPRW", 0)
         {
             If (_OSI ("Darwin"))
             {
-                Return (Package ()
+                Return (Package (0x02)
                 {
                     0x69, 
-                    0x00
+                    Zero
                 })
             }
             Else
@@ -117,10 +116,10 @@ DefinitionBlock("", "SSDT", 2, "ACDT", "XPRW", 0)
         {
             If (_OSI ("Darwin"))
             {
-                Return (Package ()
+                Return (Package (0x03)
                 {
                     0x6D, 
-                    0x00,
+                    Zero, 
                     \_SB.PCI0.LPC.EC.PUBS
                 })
             }
@@ -128,7 +127,7 @@ DefinitionBlock("", "SSDT", 2, "ACDT", "XPRW", 0)
             {
                 Return (\_SB.PCI0.XHCI.XPRW ())
             }
-            
         }
     }
 }
+

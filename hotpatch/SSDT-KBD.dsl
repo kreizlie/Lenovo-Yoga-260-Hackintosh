@@ -1,37 +1,15 @@
-// SSDT KBD
-DefinitionBlock("", "SSDT", 2, "ACDT", "_KBD", 0)
+// SSDT-KBD
+DefinitionBlock ("", "SSDT", 2, "ACDT", "KBD", 0x00000000)
 {
     External (_SB.PCI0.LPC.KBD, DeviceObj)
-    External (_SB.PCI0.LPC.EC, DeviceObj)
-    External (_SB.PCI0.LPC.EC.XQ14, MethodObj)
-    External (_SB.PCI0.LPC.EC.XQ15, MethodObj)
 
-    Scope (_SB.PCI0.LPC.EC)
+    Name (_SB.PCI0.LPC.KBD.RMCF, Package (0x02)
     {
-        Method (_Q14, 0, NotSerialized)  // Brightness Up
+        "Keyboard", 
+        Package (0x02)
         {
-            If (_OSI ("Darwin"))
-            {
-                Notify (KBD, 0x0406)
-            }
-            Else
-            {
-                XQ14()
-            }
-            Return (Zero)
+            "Swap command and option", 
+            ">y"
         }
-
-        Method (_Q15, 0, NotSerialized)  // Brightness Down
-        {
-            If (_OSI ("Darwin"))
-            {
-                Notify (KBD, 0x0405)
-            }
-            Else
-            {
-                XQ15()
-            }
-            Return (Zero)
-        }
-    }
+    })
 }
