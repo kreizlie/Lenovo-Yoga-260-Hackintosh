@@ -1,0 +1,94 @@
+25:424  19:228  Found UEFI Acpi 2.0 RSDP at b7ffe014
+25:424  0:000  Saving ACPI tables from RSDP b7ffe014 to ACPI\origin ...
+25:424  0:000   b7ffe014: 'RSD PTR ', Rev: 2 (Acpi 2.0 or newer), Len: 36 -> RSDP.aml
+25:495  0:071    (Xsdt: b7fd0188, Rsdt: b7fd00c4)
+25:495  0:000    b7fd0188: 'XSDT', 'TP-N1G', Rev: 1, Len: 204 -> XSDT.aml
+25:560  0:064    b7fd00c4: 'RSDT', 'TP-N1G', Rev: 1, Len: 120 -> RSDT.aml
+25:625  0:065    Tables in Xsdt: 21
+25:625  0:000    0. b7ff6000: 'FACP', 'TP-N1G', Rev: 5, Len: 244 -> FACP.aml
+25:698  0:073        (Dsdt: B7FDE000, Facs: B7FA9000, XDsdt: b7fde000, XFacs: 0)
+25:698  0:000        b7fde000: 'DSDT', 'TP-N1G', Rev: 2, Len: 78911 -> DSDT.aml
+25:814  0:115        b7fa9000: 'FACS', Ver: 2, Len: 64 -> FACS.aml
+25:873  0:059    1. b7fbf000: 'UEFI', 'TP-N1G', Rev: 1, Len: 66 -> UEFI.aml
+25:932  0:059    2. b7ff8000: 'SSDT', 'SaSsdt', Rev: 2, Len: 20020 -> SSDT-0-SaSsdt.aml
+25:992  0:059    3. b7ff7000: 'SSDT', 'PerfTune', Rev: 2, Len: 1477 -> SSDT-1-PerfTune.aml
+26:070  0:078    4. b7ff5000: 'ECDT', 'TP-N1G', Rev: 1, Len: 82 -> ECDT.aml
+26:129  0:058    5. b7ff4000: 'HPET', 'TP-N1G', Rev: 1, Len: 56 -> HPET.aml
+26:225  0:095    6. b7ff3000: 'APIC', 'TP-N1G', Rev: 3, Len: 188 -> APIC.aml
+26:290  0:065    7. b7ff2000: 'MCFG', 'TP-N1G', Rev: 1, Len: 60 -> MCFG.aml
+26:356  0:065    8. b7fdc000: 'SSDT', 'SataAhci', Rev: 1, Len: 6354 -> SSDT-2-SataAhci.aml
+26:444  0:088    9. b7fdb000: 'DBGP', 'TP-N1G', Rev: 1, Len: 52 -> DBGP.aml
+26:516  0:072    10. b7fda000: 'DBG2', 'TP-N1G', Rev: 0, Len: 84 -> DBG2.aml
+26:598  0:081    11. b7fd9000: 'BOOT', 'TP-N1G', Rev: 1, Len: 40 -> BOOT.aml
+26:673  0:075    12. b7fd8000: 'BATB', 'TP-N1G', Rev: 2, Len: 74 -> BATB.aml
+26:749  0:075    13. b7fd7000: 'SSDT', 'CpuSsdt', Rev: 2, Len: 3699 -> SSDT-3-CpuSsdt.aml (Found hidden SSDT 7 pcs)
+26:843  0:093        * 3086264088: 'SSDT', 'Cpu0Ist', Rev: 2, Len: 1675  53 53 44 54 8B 06 00 00 02 14 50 6D 52 65 66 00 Internal length = 1675 -> SSDT-x3_0-Cpu0Ist.aml
+26:918  0:075        * 3086251544: 'SSDT', 'ApIst', Rev: 2, Len: 1450  53 53 44 54 AA 05 00 00 02 D0 50 6D 52 65 66 00 Internal length = 1450 -> SSDT-x3_1-ApIst.aml
+27:015  0:097        * 3086253080: 'SSDT', 'Cpu0Cst', Rev: 2, Len: 975  53 53 44 54 CF 03 00 00 02 36 50 6D 52 65 66 00 Internal length = 975 -> SSDT-x3_2-Cpu0Cst.aml
+27:083  0:067        * 3086257176: 'SSDT', 'ApCst', Rev: 2, Len: 281  53 53 44 54 19 01 00 00 02 EC 50 6D 52 65 66 00 Internal length = 281 -> SSDT-x3_3-ApCst.aml
+27:151  0:067        * 3086262040: 'SSDT', 'Cpu0Hwp', Rev: 2, Len: 142  53 53 44 54 8E 00 00 00 02 2D 50 6D 52 65 66 00 Internal length = 142 -> SSDT-x3_4-Cpu0Hwp.aml
+27:232  0:081        * 3086256792: 'SSDT', 'ApHwp', Rev: 2, Len: 281  53 53 44 54 19 01 00 00 02 FF 50 6D 52 65 66 00 Internal length = 281 -> SSDT-x3_5-ApHwp.aml
+27:300  0:067        * 3086257560: 'SSDT', 'HwpLvt', Rev: 2, Len: 304  53 53 44 54 30 01 00 00 02 87 50 6D 52 65 66 00 Internal length = 304 -> SSDT-x3_6-HwpLvt.aml
+27:389  0:089  
+27:389  0:000    14. b7fd6000: 'SSDT', 'CtdpB', Rev: 2, Len: 985 -> SSDT-4-CtdpB.aml
+27:463  0:073    15. b7fd5000: 'MSDM', 'TP-N1G', Rev: 3, Len: 85 -> MSDM.aml
+27:547  0:084    16. b7fd4000: 'DMAR', 'TP-N1G', Rev: 1, Len: 168 -> DMAR.aml
+27:613  0:065    17. b7fd3000: 'ASF!', 'TP-N1G', Rev: 32, Len: 165 -> ASF!.aml
+27:678  0:065    18. b7fd2000: 'FPDT', 'TP-N1G', Rev: 1, Len: 68 -> FPDT.aml
+27:744  0:065    19. b7fd1000: 'BGRT', 'TP-N1G', Rev: 1, Len: 56 -> BGRT.aml
+27:810  0:065    20. b7fa7000: 'UEFI', 'TP-N1G', Rev: 1, Len: 318 -> UEFI.aml
+27:940  0:130    Tables in Rsdt: 21
+27:940  0:000    0. b7ff6000: 'FACP', 'TP-N1G', Rev: 5, Len: 244
+27:940  0:000        (Dsdt: B7FDE000, Facs: B7FA9000, XDsdt: b7fde000, XFacs: 0)
+27:940  0:000        b7fde000: 'DSDT', 'TP-N1G', Rev: 2, Len: 78911
+27:942  0:001        b7fa9000: 'FACS', Ver: 2, Len: 64
+27:942  0:000    1. b7fbf000: 'UEFI', 'TP-N1G', Rev: 1, Len: 66
+27:942  0:000    2. b7ff8000: 'SSDT', 'SaSsdt', Rev: 2, Len: 20020
+27:942  0:000    3. b7ff7000: 'SSDT', 'PerfTune', Rev: 2, Len: 1477
+27:942  0:000    4. b7ff5000: 'ECDT', 'TP-N1G', Rev: 1, Len: 82
+27:942  0:000    5. b7ff4000: 'HPET', 'TP-N1G', Rev: 1, Len: 56
+27:942  0:000    6. b7ff3000: 'APIC', 'TP-N1G', Rev: 3, Len: 188
+27:942  0:000    7. b7ff2000: 'MCFG', 'TP-N1G', Rev: 1, Len: 60
+27:942  0:000    8. b7fdc000: 'SSDT', 'SataAhci', Rev: 1, Len: 6354
+27:942  0:000    9. b7fdb000: 'DBGP', 'TP-N1G', Rev: 1, Len: 52
+27:942  0:000    10. b7fda000: 'DBG2', 'TP-N1G', Rev: 0, Len: 84
+27:942  0:000    11. b7fd9000: 'BOOT', 'TP-N1G', Rev: 1, Len: 40
+27:942  0:000    12. b7fd8000: 'BATB', 'TP-N1G', Rev: 2, Len: 74
+27:942  0:000    13. b7fd7000: 'SSDT', 'CpuSsdt', Rev: 2, Len: 3699
+27:942  0:000    14. b7fd6000: 'SSDT', 'CtdpB', Rev: 2, Len: 985
+27:942  0:000    15. b7fd5000: 'MSDM', 'TP-N1G', Rev: 3, Len: 85
+27:942  0:000    16. b7fd4000: 'DMAR', 'TP-N1G', Rev: 1, Len: 168
+27:942  0:000    17. b7fd3000: 'ASF!', 'TP-N1G', Rev: 32, Len: 165
+27:942  0:000    18. b7fd2000: 'FPDT', 'TP-N1G', Rev: 1, Len: 68
+27:942  0:000    19. b7fd1000: 'BGRT', 'TP-N1G', Rev: 1, Len: 56
+27:942  0:000    20. b7fa7000: 'UEFI', 'TP-N1G', Rev: 1, Len: 318
+27:942  0:000  Found UEFI Acpi 1.0 RSDP at b7ffe000
+27:942  0:000  Printing ACPI tables from RSDP b7ffe000 ...
+27:942  0:000   b7ffe000: 'RSD PTR ', Rev: 0 (Acpi 1.0), Len: 20
+27:942  0:000    (Rsdt: b7fd0000)
+27:942  0:000    b7fd0000: 'RSDT', 'TP-N1G', Rev: 1, Len: 120
+27:942  0:000    Tables in Rsdt: 21
+27:942  0:000    0. b7ff6000: 'FACP', 'TP-N1G', Rev: 5, Len: 244
+27:942  0:000        (Dsdt: B7FDE000, Facs: B7FA9000, XDsdt: b7fde000, XFacs: 0)
+27:942  0:000        b7fde000: 'DSDT', 'TP-N1G', Rev: 2, Len: 78911
+27:944  0:001        b7fa9000: 'FACS', Ver: 2, Len: 64
+27:944  0:000    1. b7fbf000: 'UEFI', 'TP-N1G', Rev: 1, Len: 66
+27:944  0:000    2. b7ff8000: 'SSDT', 'SaSsdt', Rev: 2, Len: 20020
+27:944  0:000    3. b7ff7000: 'SSDT', 'PerfTune', Rev: 2, Len: 1477
+27:944  0:000    4. b7ff5000: 'ECDT', 'TP-N1G', Rev: 1, Len: 82
+27:944  0:000    5. b7ff4000: 'HPET', 'TP-N1G', Rev: 1, Len: 56
+27:944  0:000    6. b7ff3000: 'APIC', 'TP-N1G', Rev: 3, Len: 188
+27:944  0:000    7. b7ff2000: 'MCFG', 'TP-N1G', Rev: 1, Len: 60
+27:944  0:000    8. b7fdc000: 'SSDT', 'SataAhci', Rev: 1, Len: 6354
+27:944  0:000    9. b7fdb000: 'DBGP', 'TP-N1G', Rev: 1, Len: 52
+27:944  0:000    10. b7fda000: 'DBG2', 'TP-N1G', Rev: 0, Len: 84
+27:944  0:000    11. b7fd9000: 'BOOT', 'TP-N1G', Rev: 1, Len: 40
+27:944  0:000    12. b7fd8000: 'BATB', 'TP-N1G', Rev: 2, Len: 74
+27:944  0:000    13. b7fd7000: 'SSDT', 'CpuSsdt', Rev: 2, Len: 3699
+27:944  0:000    14. b7fd6000: 'SSDT', 'CtdpB', Rev: 2, Len: 985
+27:944  0:000    15. b7fd5000: 'MSDM', 'TP-N1G', Rev: 3, Len: 85
+27:944  0:000    16. b7fd4000: 'DMAR', 'TP-N1G', Rev: 1, Len: 168
+27:944  0:000    17. b7fd3000: 'ASF!', 'TP-N1G', Rev: 32, Len: 165
+27:944  0:000    18. b7fd2000: 'FPDT', 'TP-N1G', Rev: 1, Len: 68
+27:944  0:000    19. b7fd1000: 'BGRT', 'TP-N1G', Rev: 1, Len: 56
+27:944  0:000    20. b7fa7000: 'UEFI', 'TP-N1G', Rev: 1, Len: 318
